@@ -64,17 +64,52 @@ data("penguins", package = "palmerpenguins")
 
 Description of the `penguins` dataset:
 
-* The names of the `penguins` dataset are `r names(penguins)`.
-  + The data type of species is *`r class(pull(penguins, species))`*, including *`r levels(pull(penguins, species))`*.
-  + The data type of island is *`r class(pull(penguins, island))`*, including *`r levels(pull(penguins, island))`*.
-  + The data type of bill_length_mm is *`r class(pull(penguins, bill_length_mm))`* with a range of *[`r range(pull(penguins, bill_length_mm), na.rm = TRUE)`]*.
-  + The data type of bill_depth_mm is *`r class(pull(penguins, bill_depth_mm))`* with a range of *[`r range(pull(penguins, bill_depth_mm), na.rm = TRUE)`]*.
-  + The data type of flipper_length_mm is *`r class(pull(penguins, flipper_length_mm))`* with a range of *[`r range(pull(penguins, flipper_length_mm), na.rm = TRUE)`]*.
-  + The data type of body_mass_g is *`r class(pull(penguins, body_mass_g))`* with a range of *[`r range(pull(penguins, body_mass_g), na.rm = TRUE)`]*.
-  + The data type of sex is *`r class(pull(penguins, sex))`*, including *`r levels(pull(penguins, sex))`*.
-  + The data type of year is *`r class(pull(penguins, year))`* with a range of *[`r range(pull(penguins, year), na.rm = TRUE)`]*.
+* The names of the variables in the dataset are **`r names(penguins)`**.
+
+* The values of these variables can be generally described as follows.
+
+  + The variable **`r names(penguins[1])`** has class `r class(pull(penguins, species))` 
+  and levels are `r levels(pull(penguins, species))`.
+  
+  + The variable **`r names(penguins[2])`** has class `r class(pull(penguins, island))` 
+  and levels are `r levels(pull(penguins, island))`.
+  
+  + The variable **`r names(penguins[3])`** has class `r class(pull(penguins, bill_length_mm))` 
+  with a range of [`r range(pull(penguins, bill_length_mm), na.rm = TRUE)`].
+  
+  + The variable **`r names(penguins[4])`** has class `r class(pull(penguins, bill_depth_mm))` 
+  with a range of [`r range(pull(penguins, bill_depth_mm), na.rm = TRUE)`].
+  
+  + The variable **`r names(penguins[5])`** has class `r class(pull(penguins, flipper_length_mm))` 
+  with a range of [`r range(pull(penguins, flipper_length_mm), na.rm = TRUE)`].
+  
+  + The variable **`r names(penguins[6])`** has class `r class(pull(penguins, body_mass_g))` 
+  with a range of [`r range(pull(penguins, body_mass_g), na.rm = TRUE)`].
+  
+  + The variable **`r names(penguins[7])`** has class `r class(pull(penguins, sex))` 
+  and levels are `r levels(pull(penguins, sex))`.
+  
+  + The variable **`r names(penguins[8])`** has class `r class(pull(penguins, year))` 
+  with a range of [`r range(pull(penguins, year), na.rm = TRUE)`].
 
 * The dataset has `r nrow(penguins)` rows (elements) and `r ncol(penguins)` columns (variables).
 
-* The mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)`.
+* The mean of the flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm=TRUE)`.
+
+Here is the scatterplot of flipper_length_mm (y) vs bill_length_mm (x):
+
+```{r yx_scatter}
+plot_df = tibble(
+  x = pull(penguins, bill_length_mm),
+  y = pull(penguins, flipper_length_mm)
+)
+species = pull(penguins, species)
+ggplot(plot_df, aes(x = x, y = y, color = species)) + geom_point(na.rm = TRUE)
+```
+
+Export the scatterplot.
+
+```{r, eval = FALSE}
+ggsave("plot_hw1.pdf")
+```
 
