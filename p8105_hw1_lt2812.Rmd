@@ -1,12 +1,15 @@
 ---
 title: "Homework 1"
 author: Ling Tuo
-output: github_document
+date: 09/19/2020
+output: 
+  github_document:
+    toc: true
 ---
 
 This is my solution to HW1. 
 
-```{r}
+```{r, message = FALSE}
 library(tidyverse)
 ```
 
@@ -26,7 +29,7 @@ prob1_df =
 
 Take the mean of each variable in my data frame.
 
-```{r}
+```{r means, collapse = TRUE}
 mean(pull(prob1_df, samp))
 mean(pull(prob1_df, samp_gt_0))
 mean(pull(prob1_df, char_vec))
@@ -35,7 +38,7 @@ mean(pull(prob1_df, factor_vec))
 
 I can take the mean of numbers and logical but not character or factor.
 
-```{r}
+```{r as_numeric, collapse = TRUE}
 as.numeric(pull(prob1_df, samp))
 as.numeric(pull(prob1_df, samp_gt_0))
 as.numeric(pull(prob1_df, char_vec))
@@ -44,9 +47,18 @@ as.numeric(pull(prob1_df, factor_vec))
 
 Logical and factor variables can be converted into numeric but character cannot.
 
-```{r}
+```{r convert, collapse = TRUE}
 as.numeric(pull(prob1_df, samp_gt_0))*pull(prob1_df, samp)
 as.factor(pull(prob1_df, samp_gt_0))*pull(prob1_df, samp)
 as.numeric(as.factor(pull(prob1_df, samp_gt_0)))*pull(prob1_df, samp)
+```
+
+
+## Problem 2
+
+Load penguins dataset.
+
+```{r}
+data("penguins", package = "palmerpenguins")
 ```
 
